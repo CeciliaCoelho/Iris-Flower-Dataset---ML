@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from sklearn import tree
 from sklearn.metrics import classification_report
+import matplotlib.pyplot as plt
+
 
 X = []
 y = []
@@ -26,6 +28,15 @@ dectree = tree.DecisionTreeClassifier()
 dectree = dectree.fit(X_train, y_train)
 prediction = dectree.predict(X_test)
 
+
+fn=['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm']
+cn=['Iris-setosa', 'Iris-virginica' , 'Iris-versicolor']
+fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (4,4), dpi=200)
+tree.plot_tree(dectree,
+               feature_names = fn, 
+               class_names=cn,
+               filled = True)
+plt.show()
 
 accuracy=np.sum(y_test==prediction)/len(prediction) * 100 
 print("Accuracy: ", accuracy )
