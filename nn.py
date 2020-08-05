@@ -35,9 +35,9 @@ model.add(Dense(3, activation='sigmoid'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(X, y, epochs=30, batch_size=10)
 
-y_pred=model.predict(X_test)
-y_label=np.argmax(y_test,axis=1)
-predict_label=np.argmax(y_pred,axis=1)
+y_pred = model.predict(X_test)
+y_label = np.argmax(y_test , axis=1)
+predict_label = np.argmax(y_pred , axis=1)
 
-accuracy=np.sum(y_label==predict_label)/len(y_pred) * 100 
+accuracy = np.sum(y_label == predict_label) / len(y_pred) * 100 
 print("Accuracy: ", accuracy )

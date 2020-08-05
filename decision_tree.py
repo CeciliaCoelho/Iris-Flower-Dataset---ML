@@ -1,7 +1,8 @@
 import sklearn.model_selection as model_selection
 import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
+from sklearn import tree
+from sklearn.metrics import classification_report
 
 X = []
 y = []
@@ -21,12 +22,10 @@ for row in data['Species']:
 
 X_train, X_test , y_train , y_test = model_selection.train_test_split(X, y , train_size=0.80,test_size=0.20, random_state=101)
 
-
-knn = KNeighborsClassifier(n_neighbors=1)
-knn.fit(X_train, y_train)
-
-y_pred = knn.predict(X_test)
+dectree = tree.DecisionTreeClassifier()
+dectree = dectree.fit(X_train, y_train)
+prediction = dectree.predict(X_test)
 
 
-accuracy = np.sum(y_test == y_pred) / len(y_pred) * 100 
+accuracy=np.sum(y_test==prediction)/len(prediction) * 100 
 print("Accuracy: ", accuracy )
